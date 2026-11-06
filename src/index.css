@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --ivory: #faf6f0;
+    --champagne: #e8d3b9;
+    --champagne-soft: #f4e6d4;
+    --rose: #c87d87;
+    --rose-light: #f2d6dc;
+    --rose-deep: #8c4a52;
+    --burgundy: #361622;
+    --plum: #4a1e2e;
+    --background: 30 33% 96%;
+    --foreground: 330 34% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 330 34% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 330 34% 12%;
+    --primary: 347 37% 63%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 36 46% 82%;
+    --secondary-foreground: 330 34% 12%;
+    --muted: 36 46% 90%;
+    --muted-foreground: 330 12% 40%;
+    --accent: 36 46% 90%;
+    --accent-foreground: 330 34% 12%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 33 40% 82%;
+    --input: 33 40% 82%;
+    --ring: 347 37% 63%;
+    --radius: 0.5rem;
+}
+
+html {
+    scroll-behavior: auto;
+}
+
+body {
+    margin: 0;
+    background: var(--ivory);
+    color: var(--burgundy);
+    font-family: "Jost", sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+::selection {
+    background: #f2d6dc;
+    color: #361622;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #faf6f0;
+}
+::-webkit-scrollbar-thumb {
+    background: #e8d3b9;
+    border-radius: 8px;
+    border: 2px solid #faf6f0;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #c87d87;
+}
+
+.grain::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.glass-card {
+    background: rgba(255, 253, 249, 0.55);
+    border: 1px solid rgba(200, 125, 135, 0.22);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 24px 60px -28px rgba(140, 74, 82, 0.25);
+}
+
+.glass-dark {
+    background: rgba(74, 30, 46, 0.45);
+    border: 1px solid rgba(232, 211, 185, 0.22);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.gold-rule {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #e8d3b9 20%, #c87d87 50%, #e8d3b9 80%, transparent);
+}
+
+.arch-frame {
+    border-radius: 999px 999px 18px 18px;
+    overflow: hidden;
+}
+
+.spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: radial-gradient(120% 90% at 50% 0%, transparent 40%, rgba(74, 30, 46, 0.28) 100%);
+}
+
+.paper-lines {
+    background-image: repeating-linear-gradient(
+        transparent,
+        transparent 35px,
+        rgba(200, 125, 135, 0.14) 36px
+    );
+}
+
+@keyframes marquee-x {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-x 46s linear infinite;
+}
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+.animate-floaty {
+    animation: floaty 5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    14% { transform: scale(1.14); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.14); }
+    70% { transform: scale(1); }
+}
+.animate-heartbeat {
+    animation: heartbeat 2.4s ease-in-out infinite;
+}
+
+@keyframes scroll-hint {
+    0% { transform: scaleY(0); transform-origin: top; }
+    45% { transform: scaleY(1); transform-origin: top; }
+    55% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+}
+.animate-scroll-hint {
+    animation: scroll-hint 2s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+    to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+    animation: spin-slow 5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track,
+    .animate-floaty,
+    .animate-heartbeat,
+    .animate-scroll-hint,
+    .animate-spin-slow {
+        animation: none;
+    }
+}
